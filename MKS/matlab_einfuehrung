@@ -1,0 +1,103 @@
+﻿Was bedeuten die folgenden MATLAB / GNU Octave Funktionen:
+
+transpose (’) 
+Wandelt eine Reihen- in Spaltenvektor um und umgekehrt
+
+colon (:) 
+1. Vektorerzeugung (Anfangswert:Schrittzahl:Endwert)
+2. Damit können bestimmte (m:n) als Folge oder alle (:) Werte innerhalb eines Vektors/Matrix angesprochen werden (A(:,1);A(1,:);A(:,:))
+3. Für eine For-Schleife Iteration
+
+length()
+Damit kann die Länge es Vektors dargestellt werden (Skalar)
+
+size()
+Gibt die Größe eines Vektors als ein zweidimensionalen Vektor (Start Ende) an
+
+min()
+Gibt den kleinsten Wert an
+
+max()
+Gibt den größten Wert an
+
+abs()
+Gibt den Betrag von einem Wert an
+
+Sind diese auch für Vektoren oder Matrizen benutzbar?
+Ja
+
+Was bedeuten die Operatoren .* oder ./ ?
+Elementweise Multiplikation bzw. Division
+
+Wie definiert man einen linear ansteigenden / absteigenden Vektor?
+Mit linspace() oder (:) 
+
+
+Welche Möglichkeiten gibt es in MATLAB Teile eines Vektors zu indizieren?
+Mit A(m,n) 
+
+
+Wie definiert man Kommentare in einem Skript?
+Mit dem % oder %% (Fett) Zeichen
+
+Was bedeutet ein Semikolon nach einer Anweisung?
+Das Ergebnis oder die Variable wird zwar im Workspace abgespeichert aber nicht ausgegeben
+
+Welche Strukturelemente gibt es? (Bedingte Verzweigungen, Schleifen,...). Schreiben Sie ein Skript, welches einen linear ansteigenden Vektor generiert und berechnen Sie die Quadrate der einzelnen Elemente mittels einer Schleife. Wie kann man diese Aufgabe in MATLAB eleganter (und effizienter) lösen?
+
+Es gibt For-Schleife, while schleifen und If-else-Anweisungen
+
+(1) %% Quadratberechnung mittels For-Schleife
+v = 1:20
+x = 0
+for x = 1:20
+    hold on
+    q = v(x)*v(x)
+    plot(x,q,'r*','LineWidth',3)
+    x = x + 1
+    hold off
+end
+
+(2) %% Quadratberechnung mittels elementarweiser Vektormultiplikation
+
+%Erstellung eines Spaltenvektors von 1 bis 20 Spalten mit Abstand 1
+v1 = 1:20
+
+%Der Spaltenvektor wird spaltenweise (elementarweise) mit sich selbst multipliziert
+vSq = v1.*v1
+
+%Der quadratische Vektor wird mit dem nicht quadratischen Vektor in einer Funktion dargestellt und ausgegeben
+plot(v1,vSq)
+
+	
+
+
+
+
+
+Wie können Sie eigene Funktionen definieren? Schreiben Sie eine einfache Funktion quadMittel, die den Mittelwert aus den quadrierten Elementen eines Vektors berechnet (am besten ohne eine Schleife zu benutzen).
+
+- Funktionen werden in Matlab einzeln in text editorn (scripts) geschrieben. Die erste Funktion im texteditor gibt den Namen der Datei an, die mit .m enden muss. 
+
+Funktionen werden folgendermaßen deklariert:
+
+function [y1,...,yN] = myfun(x1,...,xM) 
+
+deklariert eine Funktion namens myfun, die Eingaben x1,...,xM annimmt und Ausgänge y1,...,yN zurückgibt. Diese Deklarationsanweisung
+muss die erste ausführbare Zeile der Funktion sein.
+
+- Es können mehrere lokale Funktionen innerhalb der gleichen Datei deklariert, oder verschachtelt werden.
+
+- Wenn eine beliebige Funktion in einer Datei eine verschachtelte Funktion enthält, müssen alle Funktionen in der Datei mit dem Schlüsselwort end
+verwenden, um das Ende der Funktion anzuzeigen. Andernfalls ist das Schlüsselwort end optional.
+
+Funktion quadMittel zur Berechnung des Mittelwerts des quadrierten Vektors von 1:20:
+
+function y = quadMittel(x)
+y = mean(x);
+end
+
+Funktionsaufruf im Command Window geschiet mit dem Namensaufruf der Funktion und der Parameterübergabe als Input:
+
+y = quadMittel(vSq)
+y = 143.5
