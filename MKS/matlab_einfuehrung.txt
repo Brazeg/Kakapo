@@ -101,6 +101,3 @@ Funktionsaufruf im Command Window geschiet mit dem Namensaufruf der Funktion und
 
 y = quadMittel(vSq)
 y = 143.5
-
-
-kleine Änderung
