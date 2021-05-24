@@ -1,15 +1,16 @@
 %% 1. Skript zur Erzeugung der Sendesignale am Sender 
+
+
+clc; clear variables; % clear all variables
+
 % 1.1 Definition der Simulationsparameter:
-% Eingabeparameter
 
-% Anzahl der zu erzeugenden Bits
-nBits = 50;
+nBits = 50; % Anzahl der zu erzeugenden Bits
 
-% Konstellationspunkte-Vektor für QPSK
-const = [-1-1j, 1-1j, -1+1j, 1+1j];
+const = [-1-1j, -1+1j, 1-1j, 1+1j]; % Konstellationspunkte-Vektor für QPSK 
 
-% Aufruf der Funktion generateBits
+%% Aufruf der Funktion generateBits
 bits = generateBits(nBits);
 
-% Aufruf der Funktion mapper
-%mapper(bits, const);
+%% Aufruf der Funktion mapper
+mappedBits = mapper(bits, const);
