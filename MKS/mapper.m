@@ -7,7 +7,7 @@ y = y'; % Aus zwei Reihen-, werden zwei Spaltenvektoren mit 25 Reihen
 
 y = bi2de(y, 'left-msb'); % Reihenweise Berechnung der Bitwerte in Dezimalwerte
 y = y'; % aus Spaltenvektor, Reihenvektor machen
-y = const(y+1);
+y = const(y+1); % Zuweisung der Dezimalzahlen zu den QPSK Konstellationspunkten + 1
 
 % Zuweisung der Konstellationspunkte zu den errechneten Dezimalwerten
 % for i = 1:numel(y)
