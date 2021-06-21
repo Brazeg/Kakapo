@@ -8,9 +8,9 @@
 
 function y = radioFadingChannel(nSamp)
 
-realteil = randn(nSamp,1); % Generierung der Realteils
-imagteil = randn(nSamp,1); % Generierung des Imaginärteils
-h = realteil + 1j*imagteil; % Zusammenführung der generierten Anteile
+realteil = randn(1,nSamp); % Generierung der Realteils
+imagteil = randn(1,nSamp); % Generierung des Imaginärteils
+y = realteil + 1j*imagteil; % Zusammenführung der generierten Anteile
 
 end
 
