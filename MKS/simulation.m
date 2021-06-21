@@ -3,8 +3,12 @@ clc;
 clear variables; % clear all variables
 
 % 1.1 Definition der Simulationsparameter:
-prompt = 'Wieviele Bits sollen übertragen werden? ';
-nBits = input(prompt); % Anzahl der zu erzeugenden Bits
+
+nBits = 5000; % Anzahl der zu erzeugenden Bits
+
+snrdB = -inf; % gewünschter SNR Wert
+
+p = 1; % Leistung
 
 const = [-1-1j, -1+1j, 1-1j, 1+1j]; % Konstellationspunkte-Vektor für QPSK 
 
@@ -39,7 +43,7 @@ hold off;
 
 nSamp = numel(mappedBits);
 complexCoefficient = radioFadingChannel(nSamp);
-scaledCoefficient = setMeanPower(complexCoefficient,1);
+scaledCoefficient = setMeanPower(complexCoefficient, p);
 
 figure(2);
 subplot(2,2,1);
@@ -73,5 +77,13 @@ zlabel('PDF');
 % und die Addition mit weißem Rauschen
 
 signal = scaledCoefficient.*mappedBits;
-rauschen = setSNR(signal, 50);
-SNR = signal + rauschen;
+channelOutput = setSNR(signal, snrdB);
+
+% Testfälle:
+% 1: gewünschter SNR Wert geht gegen unendlich -> Signalleistung bleibt 
+% 2: gewünschter SNR Wert geht gegen minus unendliche -> Rauschleistung
+% bleibt
+% 3: gewünschter SNR Wert gleich der Signalleistung -> Rauschleistung +
+% Signalleistung
+leistungChannelOutput = mean(abs(channelOutput).^2);
+
