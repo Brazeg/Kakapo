@@ -5,12 +5,18 @@ function y = setSNR(x, snrdB)
 % Der Ausgabeparameter y beschreibt das verrauschte Eingangssignal, 
 % wieder als Zeilenvektoraus komplexen Zahlen.
 
-meanP = setMeanPower(x,1);
-snrB = db(snrdB./log2(size(x)));
+% Leistung des Signals
+p = 1;
+skaliertesSignal = setMeanPower(x,p);
 
-realteil = randn(nSamp,1);
-imagteil = randn(nSamp,1);
+% Pn = Pb/SNRb
+rauschleistung = p/(10^(snrdB/10));
 
+realteil = randn(1,length(x));
+imagteil = randn(1, length(x));
+n = (realteil + 1j*imagteil);
+skaliertesRauschen = setMeanPower(n,rauschleistung);
 
+y = skaliertesSignal + skaliertesRauschen;
 
 end
